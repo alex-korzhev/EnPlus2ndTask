@@ -7,7 +7,6 @@ namespace EnPlus2ndTask
     {
         static void Main(string[] args)
         {
-            test();
         }
 
         public static int fib(int mode, int value)
@@ -20,9 +19,10 @@ namespace EnPlus2ndTask
                 int temp;
                 if (value == a) { return a; }
                 if (value == b) { return b; }
-                for (int i = 2; i<= value; i++){
+                for (int i = 2; i <= value; i++)
+                {
                     temp = b;
-                    b = a + b; 
+                    b = a + b;
                     a = temp;
                 }
                 return b;
@@ -37,7 +37,6 @@ namespace EnPlus2ndTask
              * значит value не принадлежит fib вообще.
              *******************************************************************/
 
-
             if (mode == 2)
             {
                 for (int i = 0; i <= (value > 5 ? value : 5); i++)
@@ -48,51 +47,5 @@ namespace EnPlus2ndTask
             }
             return -100; //Что-то пошло совсем не так
         }
-
-
-        // ***********************************Эксперименты
-
-        public static int fibrec(int value){ //Фибоначчи через рекурсию
-            if (value < 0) { return 0; }
-            if (value == 1) { return 1; }
-            return (fibrec(value - 1) + fibrec(value - 2));
-        }
-
-        public static int bin(int mode, int value){ //Фибоначчи через формулу Бинета
-            if (mode == 1)
-            {
-                double phiP(int pow) { return Math.Pow(((1 + Math.Sqrt(5)) / 2), pow); }
-                double phiM(int pow) { return Math.Pow(((1 - Math.Sqrt(5)) / 2), pow); }
-                return (int)((phiP(value) - phiM(value)) / Math.Sqrt(5));
-            }
-            if (mode == 2){
-                for (int i = 0; i < value; i++)
-                {
-                    if (bin(1, i) == value) { return i; }
-                    if (bin(1, i) > value) { return -1; }
-                }
-                return -1;
-            }
-            return -100;
-        }
-
-        public static void test(){
-            for (int i = 0; i < 40; i++)
-            {
-                Console.WriteLine($"Ind: {i}  ==FIB== {fib(1, i)} ==BIN== {bin(1, i)}");
-            }
-            Console.WriteLine($"8 = {fib(2, 8)} ==BIN== {bin(2, 8)}");
-            Console.WriteLine($"13 = {fib(2, 13)} ==BIN== {bin(2, 13)}");
-            Console.WriteLine($"-2 = {fib(2, -2)} ==BIN== {bin(2, -2)}");
-            Console.WriteLine($"4 = {fib(2, 4)} ==BIN== {bin(2, 4)}");
-            Console.WriteLine($"75025 = {fib(2, 75025)} ==BIN== {bin(2, 75025)}");
-            Console.WriteLine($"75026 = {fib(2, 75026)} ==BIN== {bin(2, 75026)}");
-            Console.WriteLine(bin(1, int.MaxValue - 1));
-            Console.ReadLine();
-        }
-        
-
     }
-
-    
 }
